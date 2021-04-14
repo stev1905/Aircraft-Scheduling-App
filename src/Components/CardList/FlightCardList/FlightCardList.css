@@ -1,0 +1,77 @@
+.flight-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MuiPaper-root.MuiCard-root.makeStyles-rootCard-5 {
+    width: 340px;
+    height: 700px;
+    margin: 20px;
+    background-color: #607d8b;
+}
+
+.MuiPaper-root.MuiCard-root.makeStyles-rootCard-8 {
+    height: 95px;
+    margin: 15px;
+    padding: 5px 5px 10px 10px;
+    min-width: 275px;
+    background-color: white;
+}
+
+.flightContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+}
+
+.flightName {
+    display: flex;
+    justify-content: center;
+}
+
+.addflight {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.paginationBttns {
+    padding: 15px 0px;
+    margin: 20px;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationBttns a {
+    padding: 5px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+.paginationBttns a:hover {
+    color: white;
+    background-color: black;
+}
+
+hr.style-six {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.displayflight {
+    height: 550px;
+}
+
+.fa {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}

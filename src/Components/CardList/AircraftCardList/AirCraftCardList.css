@@ -1,0 +1,36 @@
+.aircraft-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MuiPaper-root.MuiCard-root.makeStyles-rootCard-5 {
+    width: 340px;
+    height: 600px;
+    margin: 20px;
+    background-color: #607d8b;
+}
+
+.MuiPaper-root.MuiCard-root.makeStyles-rootCard-6 {
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    margin: 20px;
+    padding: 15px;
+    min-width: 275px;
+    background-color: white;
+}
+
+.aircraftdata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    padding: 10px;
+    border: solid black 1px;
+}
+
+.usage {
+    font-weight: 700;
+    padding-top: 10px;
+}

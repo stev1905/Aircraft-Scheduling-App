@@ -1,0 +1,11 @@
+.MuiPaper-root.MuiCard-root.makeStyles-rootCard-12 {
+    width: 475px;
+    height: 150px;
+    margin: 20px;
+    background-color: #607d8b;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}

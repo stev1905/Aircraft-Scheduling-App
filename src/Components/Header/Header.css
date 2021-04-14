@@ -1,0 +1,11 @@
+.header {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    min-width: 250px;
+}
