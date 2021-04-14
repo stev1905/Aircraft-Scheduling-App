@@ -1,5 +1,10 @@
 <h2>Planning & Execution:</h2><br>
-•	After reviewing the application requirements several times, I tried to fully understand all functional requirements needed. I found some of the requirements to be difficult to grasp at first, so I decided to start with the easier requirements and then planned out how to break the larger obstacles down into smaller ones.
+<ul>
+ <li>After reviewing the application requirements several times, I tried to fully understand all functional requirements needed. I found some of the requirements to be difficult to grasp at first, so I decided to start with the easier requirements and then planned out how to break the larger obstacles down into smaller ones.</li>
+ <li></li>
+ <li></li>
+</ul>
+•	
 •	First, I planned out how many functional components and containers I would need to build out the design and layout.
 •	Next, I defined the pieces of state needed for the app. I also weighed whether to use React Hooks or lifecycle methods.
 •	Due to the number of functional components used and state management architecture, I opted to use the traditional lifecycle methods.
