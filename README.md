@@ -1,4 +1,4 @@
-Planning & Execution:
+<h2>Planning & Execution:</h2><br>
 •	After reviewing the application requirements several times, I tried to fully understand all functional requirements needed. I found some of the requirements to be difficult to grasp at first, so I decided to start with the easier requirements and then planned out how to break the larger obstacles down into smaller ones.
 •	First, I planned out how many functional components and containers I would need to build out the design and layout.
 •	Next, I defined the pieces of state needed for the app. I also weighed whether to use React Hooks or lifecycle methods.
@@ -6,13 +6,13 @@ Planning & Execution:
 •	To quickly style the user interface, I leveraged the Material UI library (Card design) and CSS Flexbox (element positioning).
 •	Also, I pulled in a library called “React-paginate” to assist with the pagination functionality.
  
-Assumptions:
+<h2>Assumptions:</h2><br>
 •	Since the scheduler is not integrated with a backend database, I did not create the functionality to change the date. The date is static. With more time, I would consider integrating some caching / local storage features and adding the date as a part of my initial state requirements.
 •	The API URL returns a max amount of 25 records. Since this is the case, after each time the user selects a flight, the selected flight destination is compared to a static list of the results. Then, the state is updated to display on the records which make sense (comparing the last destination to the next origin). This way the aircraft can’t teleport, and the user cannot select a flight time before the first flight select.
 •	I assumed that most of the application’s use case was for the desktop screen. Therefore, I did not allocate time to add media queries for mobile-friendly viewing.
 •	Since this is only one aircraft in the API data, the user is not requirement to select the aircraft and flight, it’s defaulted to that aircraft.
 
-Areas of Focus:
+<h2>Areas of Focus:</h2><br>
 •	Create a simple way for the user to add and edit the flight scheduler.
 •	Create a simple and clean design.
 •	Limit user error -The app is built to limit user error. Based on the user's flight selection, only flights that are physically possible to connect to are displayed.
@@ -23,7 +23,7 @@ Challenges / Areas of Improvement
 •	Flight Timeline Component - I brainstormed on how to create the timeline component. I considered using a bootstrap multi-progress bar and the state from the RotationData array. Ultimately, I spent too much time on this feature, and I decided to focus on other areas of the core functionality.
 •	Testing – I did not get the opportunity to test a lot of edge cases. In a normal project setting, I would spend much more time on this action.
 
-Conclusion
+<h2>Conclusion</h2><br>
 •	Overall, I enjoyed building this application. I think I covered most of the asking requirements and with more time I’m confident that I could have figured out areas that were missed. I’m curious to any feedback on how to improve or how I could’ve handled specific problems better. 
  
 Thank you for the opportunity,
