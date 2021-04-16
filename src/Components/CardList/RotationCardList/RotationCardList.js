@@ -29,7 +29,7 @@ const RotationCardList = ({ ...props }) => {
                         <span>{rotation.readableDeparture}</span>
                       </div>
                       <div className="arrow-rotation">
-                      <i class="fa fa-long-arrow-right fa-5x"></i>
+                      <i className="fa fa-long-arrow-right fa-5x"></i>
                       </div>
                       <div className="arrival-rotation">
                         <span>{rotation.destination}</span>

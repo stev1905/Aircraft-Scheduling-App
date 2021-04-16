@@ -4,8 +4,48 @@
     margin: 20px;
     background-color: #607d8b;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
+.timeline {   
+    display: flex;
+    justify-content: flex-start;
+    border: solid 2px black;
+    
+}
+
+.timeline-bar-gray {
+    background-color: gray;
+    height: 79px;
+    width: 3px;
+    border: solid 1px black;
+}
+
+.timeline-bar-green {
+    background-color: lawngreen;
+    height: 79px;
+    width: 3px;
+    border: solid 1px black;
+}
+
+.legend {
+    border: solid 2px black;
+    background-color: white;
+    height: 120px;
+}
+
+.legend-labels {
+    display: flex;
+    font-size: 10px;
+    justify-content: space-evenly;
+    height: 35px;
+}
+
+.legend-labels span {
+    font-weight: bold;
+    transform: rotate(50deg);
     text-align: center;
+    padding-top: 10px;
 }

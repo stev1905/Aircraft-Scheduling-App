@@ -16,6 +16,8 @@ class App extends Component {
       isLoaded: false,
       pageNumber: 0,
       flightData: [],
+      flightTimelineRange: [],
+      selectedFlights: {},
       initialFlightData: [],
       aircraftData: [],
       rotationData:[],
@@ -34,14 +36,21 @@ class App extends Component {
     this.setState({ pageNumber: selected });
   }
   
-  getFilteredData = (destination, arrivaltime) => {
+  //Returns filtered list based on user selection
+  //tried to account for flights before or after selected flight.
+  //I wasn't sure how to not repeat flights. Curious as to how I can acheive this.
+  getFilteredData = (origin, destination, departureTime, arrivalTime, id) => {
     const newFlightData = {};
-    //selected destinationw ill compare against static list
+    console.log(this.state.selectedFlights)
+    console.log(origin, destination, departureTime, arrivalTime, id)
     const newResults = this.state.initialFlightData.filter((flight) => {
-      return flight.origin === destination && arrivaltime < flight.departuretime;
-    });
+      console.log(flight.departuretime, flight.arrivaltime, flight.origin, (flight.destination === origin && departureTime > flight.arrivaltime) || (flight.origin === destination && arrivalTime < flight.departuretime) )
+      return ((flight.destination === origin && departureTime > flight.arrivaltime) || (flight.origin === destination && arrivalTime < flight.departuretime) 
+      )
+    }).filter((selectedData) => !(selectedData.id in this.state.selectedFlights))
+   
     newFlightData['data'] = newResults;
-    this.setState({ flightData: newFlightData });
+    this.setState({flightData: newFlightData});
   }
   
   //Reset State for app, clear out scheduler
@@ -56,20 +65,32 @@ class App extends Component {
         flightData: flightData, 
         initialFlightData: flightData.data,
         rotationData:[], 
+        flightTimelineRange: [],
+        selectedFlights: {},
         isLoaded: true,
         usage: 0,
         pageNumber: 0,
+        flightTimelineRange: [],
         runningFlightTime: 0, 
       });
     })
+  }
+
+  //This method is incomplete. Could not figure out how to get colors to component. With more time, Ithink I could've figured it out.
+  getTimelineRange = (departure, arrival) => {
+    const convertedDeparture = Math.round((departure / 60) / 10);
+    const convertedArrival = Math.round((arrival / 60) / 10);
+    const newFlightTimeline = this.state.flightTimelineRange;
+    
+    newFlightTimeline.push([convertedDeparture, convertedArrival])
+    this.setState({flightTimelineRange: newFlightTimeline})
   }
   //calculate percentage of aircraft usage
   getAircraftUsage = (departure, arrival) => {
     const flightTime = (arrival - departure) / 60;
     const newRunningFlightTime = this.state.runningFlightTime + flightTime;
-    this.setState({runningFlightTime: newRunningFlightTime});
     const percentage = ((newRunningFlightTime / 1440) * 100).toFixed(2);
-    this.setState({usage: percentage})
+    this.setState({runningFlightTime: newRunningFlightTime, usage: percentage});
   }
   //Handle moving flightcard to rotation
   onFlightSelect = (e) => {
@@ -84,50 +105,53 @@ class App extends Component {
       destination: newData[0].destination,
       readableDeparture: newData[0].readable_departure,
       readableArrival: newData[0].readable_arrival,
-      arrival: newData[0].arrivaltime,
-      departure: newData[0].departuretime,
+      arrivalTime: newData[0].arrivaltime,
+      departureTime: newData[0].departuretime,
     }
     const newRotation = this.state.rotationData;
-    const flightTime = rotation.arrival - rotation.departure;
-    const realFlightTime = flightTime + rotation.departure;
+    const newSelectedFlights = this.state.selectedFlights;
+    const flightTime = rotation.arrivalTime - rotation.departureTime;
+    const realFlightTime = flightTime + rotation.departureTime;
     if(realFlightTime > 86400) {
         alert('Flights Must be grounded at Midnight')
         return;
       } else {
       newRotation.push(rotation)
-      const departureInSec = newData[0].departuretime;
-      const arrivalInSec = newData[0].arrivaltime;
-      const destination = rotation.destination;
-      const arrivaltime = rotation.arrival;
-      this.getAircraftUsage(departureInSec, arrivalInSec); 
-      this.getFilteredData(destination, arrivaltime)
-      this.setState({rotationData: newRotation});
+      newSelectedFlights[rotation.id] = true;
+      newRotation.sort((a, b) => (a.departureTime > b.departureTime) ? 1 : -1)
+      this.getAircraftUsage(rotation.departureTime, rotation.arrivalTime); 
+      this.getFilteredData(rotation.origin, rotation.destination, rotation.departureTime, rotation.arrivalTime, rotation.id);
+      this.getTimelineRange (rotation.departureTime, rotation.arrivalTime)
+      this.setState({rotationData: newRotation, selectedFlights: newSelectedFlights});
     }
   }
 
   render() {
-    const {aircraftData, flightData, rotationData, isLoaded, pageNumber} = this.state;
+    const {aircraftData, flightData, rotationData,usage, isLoaded, pageNumber, flightTimelineRange} = this.state;
+    const {onChangePage, onFlightSelect, handleReset} = this;
     return !isLoaded ? <h1>Loading..</h1> :
       (<div className="app">
         <Header />
         <div className="flightCard-Container">
           <AirCraftCardList 
             aircrafts={aircraftData} 
-            usage={this.state.usage}
+            usage={usage}
           />
           <div className="rotation-section">
             <RotationCardList 
               aircrafts={aircraftData} 
               rotationData={rotationData}
-              handleReset={this.handleReset}
+              handleReset={handleReset}
             />
-          <FlightTimeline />
+          <FlightTimeline 
+              flightTimelineRange={flightTimelineRange}
+          />
           </div>
             <FlightsCardList 
               flightData={flightData}
               pageNumber={pageNumber}
-              onChangePage={this.onChangePage} 
-              onFlightSelect={this.onFlightSelect}
+              onChangePage={onChangePage} 
+              onFlightSelect={onFlightSelect}
             />
         </div>          
     </div>

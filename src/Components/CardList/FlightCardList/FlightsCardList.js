@@ -11,6 +11,7 @@ const FlightsCardList = ({...props }) => {
   const pageCount = Math.ceil(flightData.length / usersPerPage)
   const displayFlightData = flightData.slice(pagesVisited, pagesVisited + usersPerPage).map((flight) => (
     <Card key={flight.id} className="makeStyles-rootCard-8"> 
+   
       <i className="fa fa-plus-square fa-sm" onClick={props.onFlightSelect} id={flight['id']}></i>
       <div className="flightName-container">
         <div className="flightName">{flight.id}</div>
