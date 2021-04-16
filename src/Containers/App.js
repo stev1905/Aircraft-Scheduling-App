@@ -41,10 +41,7 @@ class App extends Component {
   //I wasn't sure how to not repeat flights. Curious as to how I can acheive this.
   getFilteredData = (origin, destination, departureTime, arrivalTime, id) => {
     const newFlightData = {};
-    console.log(this.state.selectedFlights)
-    console.log(origin, destination, departureTime, arrivalTime, id)
     const newResults = this.state.initialFlightData.filter((flight) => {
-      console.log(flight.departuretime, flight.arrivaltime, flight.origin, (flight.destination === origin && departureTime > flight.arrivaltime) || (flight.origin === destination && arrivalTime < flight.departuretime) )
       return ((flight.destination === origin && departureTime > flight.arrivaltime) || (flight.origin === destination && arrivalTime < flight.departuretime) 
       )
     }).filter((selectedData) => !(selectedData.id in this.state.selectedFlights))

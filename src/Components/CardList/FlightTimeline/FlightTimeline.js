@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import './FlightTimeline.css';
 
-const divArray = ({...props}, div) => {
+const divArray = (flightTimelineRange, div) => {
     let content = [];
     //144 is the amount of ten minute blocks in a day.
     for (let i = 0; i < 144; i++) {
